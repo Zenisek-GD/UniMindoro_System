@@ -1,0 +1,377 @@
+{{> head}}
+<div class="flex min-h-screen">
+      <!-- Sidebar -->
+<div class="w-64 flex flex-col bg-gradient-to-b from-[#0B1120] to-[#1A1F35] border-r border-gray-800">
+    <!-- Logo -->
+    <div class="p-6 border-b border-gray-800">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
+                <i class="fas fa-hands-helping text-white text-sm"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-white">UniMindoro</h1>
+                <p class="text-gray-400 text-xs">Admin Panel</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="p-4 space-y-2 flex-1">
+        <a href="/admin/dashboard" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-tachometer-alt w-5"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="/admin/announcements" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-bullhorn w-5"></i>
+            <span>Announcements</span>
+        </a>
+        <a href="/admin/shelters"  class="flex items-center space-x-3 px-4 py-3 bg-cyan-500/20 text-cyan-400 rounded-xl border border-cyan-500/30">
+            <i class="fas fa-home w-5"></i>
+            <span>Shelters</span>
+        </a>
+        <a href="/admin/resources" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-boxes w-5"></i>
+            <span>Resources</span>
+        </a>
+        <a href="/admin/staff" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-users w-5"></i>
+            <span>Staff Management</span>
+        </a>
+        <a href="/admin/occupants" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-user-friends w-5"></i>
+            <span>Occupants</span>
+        </a>
+        <a href="/admin/occupancy" class="flex items-center space-x-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all duration-300">
+            <i class="fas fa-bed w-5"></i>
+            <span>Occupancy</span>
+        </a>
+    </nav>
+
+    <!-- User Section -->
+    <div class="p-4 border-t border-gray-800 mt-auto bg-[#0B1120]">
+        <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                <i class="fas fa-user-shield text-white text-sm"></i>
+            </div>
+            <div class="flex-1">
+                <p class="text-sm font-semibold text-white">{{user.name}}</p>
+                <p class="text-xs text-gray-400 capitalize">{{user.role}}</p>
+            </div>
+        </div>
+        <a href="/logout" class="flex items-center space-x-3 px-4 py-2 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all duration-300">
+            <i class="fas fa-sign-out-alt w-5"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-white">Shelter Management</h1>
+                <p class="text-gray-400">Manage emergency shelters and availability</p>
+            </div>
+            <button class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                <i class="fas fa-plus mr-2"></i>Add New Shelter
+            </button>
+        </div>
+
+        <!-- Shelters Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+    <!-- 1. Health Workers' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Health Workers' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Dedicated to barangay health workers (BHWs), providing temporary accommodation and facilities for health-related community services.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">50 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">25 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">25 people</span></div>
+        </div>
+    </div>
+
+    <!-- 2. Brotherhood Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Brotherhood Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Provides shelter and spaces for community fraternities and brotherhood organizations supporting social initiatives.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">40 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">20 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">20 people</span></div>
+        </div>
+    </div>
+
+    <!-- 3. Civic Organizations' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">Limited</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Civic Organizations' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Multi-purpose facilities for local civic groups and NGOs, supporting community initiatives and temporary housing for volunteers.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">60 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-yellow-400">10 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">50 people</span></div>
+        </div>
+    </div>
+
+    <!-- 4. Cooperatives Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Cooperatives Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Serves cooperative members with temporary accommodations and meeting spaces for local business and community activities.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">50 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">20 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">30 people</span></div>
+        </div>
+    </div>
+
+    <!-- 5. Agri-fishery Workers' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">Limited</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Agri-fishery Workers' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Supports farmers and fisherfolk, providing accommodations and facilities for community training and resource distribution.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">70 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-yellow-400">15 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">55 people</span></div>
+        </div>
+    </div>
+
+    <!-- 6. Mangyan Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-red-500/20 text-red-400 text-xs rounded-full border border-red-500/30">Full</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Mangyan Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Dedicated to indigenous Mangyan community members with accommodations for cultural programs and temporary housing.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">30 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-red-400">0 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">30 people</span></div>
+        </div>
+    </div>
+
+    <!-- 7. MOMCI Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">MOMCI Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Focused on youth and community programs, offering temporary housing and training for local young adults and students.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">60 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">40 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">20 people</span></div>
+        </div>
+    </div>
+
+    <!-- 8. PTA Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">Limited</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">PTA Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            For parent-teacher association activities and temporary accommodation during school events and community programs.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">50 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-yellow-400">15 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">35 people</span></div>
+        </div>
+    </div>
+
+    <!-- 9. PWD Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">PWD Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Supports persons with disabilities, offering temporary housing and accessible facilities for inclusive community programs.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">40 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">30 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">10 people</span></div>
+        </div>
+    </div>
+
+    <!-- 10. Senior Citizens' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Senior Citizens' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Designed for senior citizens, providing comfort, safety, and spaces for recreational activities and temporary stays.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">50 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">35 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">15 people</span></div>
+        </div>
+    </div>
+
+    <!-- 11. Special Concerns' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">Limited</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Special Concerns' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Accommodates community members with special concerns, including minority and marginalized groups, providing support and temporary housing.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">45 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-yellow-400">10 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">35 people</span></div>
+        </div>
+    </div>
+
+    <!-- 12. Educators' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Educators' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Serves teachers and education staff, providing temporary accommodations and facilities for professional development programs.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">60 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">40 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">20 people</span></div>
+        </div>
+    </div>
+
+    <!-- 13. Women's Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Available</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Women's Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Provides temporary housing and support facilities for women, including programs for empowerment and safety.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">50 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-green-400">30 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">20 people</span></div>
+        </div>
+    </div>
+
+    <!-- 14. Transportation Workers' Center -->
+    <div class="bg-gradient-to-br from-[#151B2B] to-[#1A233F] border border-gray-700 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">Limited</span>
+            <div class="flex space-x-2">
+                <button class="text-cyan-400 hover:text-cyan-300 transition-colors"><i class="fas fa-edit"></i></button>
+                <button class="text-red-400 hover:text-red-300 transition-colors"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">Transportation Workers' Center</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Dedicated to drivers and transport personnel, offering temporary accommodation and training facilities for transport-related programs.
+        </p>
+        <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Capacity:</span><span class="text-white">45 people</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Available Beds:</span><span class="text-yellow-400">10 beds</span></div>
+            <div class="flex justify-between text-sm"><span class="text-gray-400">Current Occupants:</span><span class="text-cyan-400">35 people</span></div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #0B1120 0%, #1A1F35 100%);
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+</style>

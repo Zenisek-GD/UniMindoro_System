@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniMindoro - {{#if title}}{{title}}{{else}}Admin Dashboard{{/if}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0B1120 0%, #1A1F35 100%);
+            min-height: 100vh;
+            color: #EAEAEA;
+        }
+
+        .sidebar {
+            background: rgba(21, 27, 43, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            z-index: 50;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            background: transparent;
+        }
+
+        .navbar {
+            background: rgba(21, 27, 43, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-text {
+            font-weight: 700;
+            background: linear-gradient(135deg, #3CB4FF 0%, #00C6A9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-item {
+            color: #9CA3AF;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .nav-item:hover {
+            color: #3CB4FF;
+            background: rgba(60, 180, 255, 0.1);
+        }
+
+        .nav-item.active {
+            color: #3CB4FF;
+            background: rgba(60, 180, 255, 0.15);
+            border-left: 3px solid #3CB4FF;
+        }
+
+        .card {
+            background: rgba(21, 27, 43, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(60, 180, 255, 0.1) 0%, rgba(0, 198, 169, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3CB4FF 0%, #00C6A9 100%);
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(60, 180, 255, 0.3);
+        }
+
+        .user-badge {
+            background: rgba(60, 180, 255, 0.1);
+            border: 1px solid rgba(60, 180, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Logo -->
+        <div class="p-6 border-b border-gray-800">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#3CB4FF] to-[#00C6A9] rounded-xl flex items-center justify-center">
+                    <i class="fas fa-hands-helping text-white text-sm"></i>
+                </div>
+                <h1 class="text-xl font-bold brand-text">UniMindoro</h1>
+            </div>
+            <p class="text-gray-400 text-xs mt-2">Admin Panel</p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="p-4 space-y-2">
+            <a href="/admin/dashboard" class="nav-item flex items-center space-x-3 px-4 py-3 active">
+                <i class="fas fa-tachometer-alt w-5"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/admin/announcements" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-bullhorn w-5"></i>
+                <span>Announcements</span>
+            </a>
+            <a href="/admin/shelters" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-home w-5"></i>
+                <span>Shelters</span>
+            </a>
+            <a href="/admin/resources" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-boxes w-5"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/admin/staff" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-users w-5"></i>
+                <span>Staff Management</span>
+            </a>
+            <a href="/admin/occupants" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-user-friends w-5"></i>
+                <span>Occupants</span>
+            </a>
+            <a href="/admin/occupancy" class="nav-item flex items-center space-x-3 px-4 py-3">
+                <i class="fas fa-bed w-5"></i>
+                <span>Occupancy</span>
+            </a>
+        </nav>
+
+        <!-- User Section -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-800">
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#3CB4FF] to-[#00C6A9] rounded-full flex items-center justify-center">
+                    <i class="fas fa-user-shield text-white text-sm"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-semibold text-white">{{user.name}}</p>
+                    <p class="text-xs text-gray-400 capitalize">{{user.role}}</p>
+                </div>
+            </div>
+            <a href="/logout" class="flex items-center space-x-3 px-4 py-2 text-gray-400 hover:text-red-400 transition-colors rounded-lg hover:bg-red-500/10">
+                <i class="fas fa-sign-out-alt w-5"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar p-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">{{#if pageTitle}}{{pageTitle}}{{else}}Dashboard{{/if}}</h1>
+                    <p class="text-gray-400 text-sm">{{#if pageSubtitle}}{{pageSubtitle}}{{else}}System Overview{{/if}}</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="user-badge px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-user-shield mr-2"></i>
+                        {{user.role}}
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-300">{{formatDate currentTime}}</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <main class="p-6">
+            {{{body}}}
+        </main>
+    </div>
+
+    <script>
+        // Update time every minute
+        function updateTime() {
+            const timeElement = document.querySelector('.text-right p');
+            if (timeElement) {
+                const now = new Date();
+                timeElement.textContent = now.toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        }
+
+        // Initial call and set interval
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        // Add active class to current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+views/
+├── layouts/
+│   └── main.handlebars          # Main layout template
+├── partials/
+│   ├── head.handlebars          # Head section
+│   ├── footer.handlebars        # Footer section
+│   ├── admin/
+│   │   ├── sidebar.handlebars   # Admin navigation
+│   │   └── dashboard-cards.handlebars
+│   ├── staff/
+│   │   ├── sidebar.handlebars   # Staff navigation
+│   │   └── occupant-forms.handlebars
+│   └── sector-rep/
+│       ├── sidebar.handlebars   # Sector rep navigation
+│       └── resource-cards.handlebars
+├── admin/                       # Admin Views
+│   ├── dashboard.handlebars
+│   ├── announcements/
+│   │   ├── list.handlebars
+│   │   └── create.handlebars
+│   ├── shelters/
+│   │   ├── availability.handlebars
+│   │   └── manage.handlebars
+│   ├── resources/
+│   │   ├── transactions.handlebars
+│   │   └── inventory.handlebars
+│   ├── staff/
+│   │   ├── list.handlebars
+│   │   └── create.handlebars
+│   └── occupants/
+│       ├── list.handlebars
+│       ├── manage.handlebars
+│       └── occupancy.handlebars
+├── staff/                       # Staff Views
+│   ├── dashboard.handlebars
+│   ├── occupants/
+│   │   ├── list.handlebars
+│   │   ├── add.handlebars
+│   │   └── view.handlebars
+│   └── occupancy/
+│       ├── checkin.handlebars
+│       ├── checkout.handlebars
+│       └── current.handlebars
+├── sector-rep/                  # Sector Representative Views
+│   ├── dashboard.handlebars
+│   ├── resources/
+│   │   ├── view.handlebars
+│   │   ├── manage.handlebars
+│   │   └── request.handlebars
+│   └── shelters/
+│       └── availability.handlebars
+├── auth/                        # Authentication Views
+│   ├── login.handlebars
+│   └── register.handlebars
+└── home.handlebars              # Landing page
